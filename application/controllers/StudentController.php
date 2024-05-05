@@ -7,39 +7,87 @@ class StudentController extends CI_Controller {
         parent::__construct();
         $this->load->database();
         $this->load->model('Student');
+        $this->load->library('session');
+        $this->load->helper('url');
     }
 
+    //LIST (& INSERT) VIEW
     public function index() {
       $data['students'] = $this->Student->get_students();
-      $this->load->helper('url');
-      $this->load->view('students_list', $data);
+      $this->load->view('student/list', $data);
     }
 
-    public function add() {
-        //$name = $this->input->post('name');
-        $name = 'John Doe';
-        if (!empty($name)) {
-            $result = $this->Student->insert_student($name);
-            if ($result) {
-                echo "Student added successfully!";
-            } else {
-                echo "Failed to add student.";
-            }
-        } else {
-            echo "Name cannot be empty!";
-        }
-    }
-
-    public function edit($id)
+    //EDIT VIEW
+    public function editView($id)
     {
-      $data['student'] = $this->Student->get_student($id);
-      $this->load->helper('url');
-      $this->load->view('edit_student', $data);
+      $student = $this->Student->get_student($id);
+      if (empty($student)) {
+        $this->session->set_flashdata('error', 'Estudante não encontrado.');
+        redirect('alunos');
+      }
+      $data['student'] = $student;
+      $this->load->view('student/edit', $data);
     }
 
+    //SAVE
+    public function save()
+    {
+      if ($this->input->post()) {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Nome', 'required');
+        
+        if ($this->form_validation->run()) {
+            $data = array(
+                'name' => $this->input->post('name')
+            );
+            $this->Student->insert_student($data);
+            $this->session->set_flashdata('success', 'Aluno adicionado!');
+            redirect('alunos');
+        } else {
+            $this->session->set_flashdata('error', validation_errors());
+            redirect("aluno/adicionar");
+        }   
+      } else {
+          $this->session->set_flashdata('error', 'método inválido');
+          redirect('alunos');
+      }
+    }
+
+    //UPDATE
+    public function update($id)
+    {
+      if ($this->input->post()) {
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('name', 'Nome', 'required');
+        
+        if ($this->form_validation->run()) {
+          $data = array(
+            'name' => $this->input->post('name')
+          );
+          $this->Student->update_student($id, $data);
+          $this->session->set_flashdata('success', 'Dados atualizados');
+        }
+        else {
+          $this->session->set_flashdata('error', validation_errors());
+          redirect("aluno/editar/{$id}");
+        }   
+      }
+      else {
+        $this->session->set_flashdata('error', 'Método inválido');
+      }
+      redirect('alunos');
+    }
+
+    //DELETE
     public function delete($id)
     {
-      $this->Student->delete_student($id);
+      $student = $this->Student->get_student($id);
+      if ($student) {
+        $this->Student->delete_student($id);
+        $this->session->set_flashdata('success', 'Estudante excluído');
+      } else {
+        $this->session->set_flashdata('error', 'Estudante não encontrado');
+      }
       redirect('alunos');
     }
 }

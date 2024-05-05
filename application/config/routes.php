@@ -56,6 +56,11 @@ $route['translate_uri_dashes'] = FALSE;
 
 //student routes
 $route['alunos'] = 'StudentController/index';
-$route['aluno/novo'] = 'StudentController/add';
-$route['aluno/editar/(:num)'] = 'StudentController/edit/$1';
+
+$route['aluno/novo'] = 'StudentController/createView';
+$route['aluno/salvar'] = 'StudentController/save';
+
+$route['aluno/editar/(:num)'] = 'StudentController/editView/$1';
+$route['aluno/atualizar/(:num)'] = 'StudentController/update/$1';
+
 $route['aluno/excluir/(:num)'] = 'StudentController/delete/$1';
