@@ -1,5 +1,5 @@
 <?php
-class Student extends CI_Model {
+class Student_model extends CI_Model {
 
   //returns all students, always returns an array, empty if no students
     public function get_students()

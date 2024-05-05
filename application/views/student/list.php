@@ -55,7 +55,7 @@
 
 <script>
   function confirmDelete(studentId) {
-    if (confirm('Tem certeza que deseja excluir esse estudante?')) {
+    if (confirm('Tem certeza que deseja excluir esse aluno?')) {
       window.location.href = "<?php echo site_url('aluno/excluir/'); ?>" + studentId;
     }
   }

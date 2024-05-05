@@ -54,13 +54,13 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-//student routes
-$route['alunos'] = 'StudentController/index';
+//            STUDENT ROUTES
+$route['alunos'] = 'Student/index';
 
-$route['aluno/novo'] = 'StudentController/createView';
-$route['aluno/salvar'] = 'StudentController/save';
+$route['aluno/novo'] = 'Student/createView';
+$route['aluno/salvar'] = 'Student/save'; //POST
 
-$route['aluno/editar/(:num)'] = 'StudentController/editView/$1';
-$route['aluno/atualizar/(:num)'] = 'StudentController/update/$1';
+$route['aluno/editar/(:num)'] = 'Student/editView/$1';
+$route['aluno/atualizar/(:num)'] = 'Student/update/$1'; //POST
 
-$route['aluno/excluir/(:num)'] = 'StudentController/delete/$1';
+$route['aluno/excluir/(:num)'] = 'Student/delete/$1';
