@@ -1,6 +1,6 @@
-<?php $this->load->view('layouts/header', array('title' => 'Edit Student')); ?>
+<?php $this->load->view('layouts/header', array('title' => 'Atualizar aluno')); ?>
 
-<h2>Editar aluno</h2>
+<h2>Atualizar aluno</h2>
 
 <form action="<?php echo site_url('aluno/atualizar/' . $student->id); ?>" method="post">
 
@@ -20,7 +20,7 @@
     </div>
 
     <div class="col-2 align-self-end">
-      <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Update</button>
+      <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Atualizar</button>
     </div>
     
   </div>

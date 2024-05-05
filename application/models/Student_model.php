@@ -18,7 +18,7 @@ class Student_model extends CI_Model {
       }
     }
 
-    //inserts new student into database, returns true if successful
+    //inserts new student into the db, returns true if successful
     public function insert_student($data)
     {
       $this->db->insert('students', $data);
@@ -43,9 +43,16 @@ class Student_model extends CI_Model {
       }
     }
 
+    //deletes unit with matching id, returns true if successful
     public function delete_student($id)
     {
       $this->db->delete('students', array('id' => $id));
+      
+      if ($this->db->affected_rows() > 0) {
+        return true;
+      } else {
+        return false;
+      }
     }
 }
 ?>

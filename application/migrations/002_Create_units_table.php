@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Migration_Create_students_table extends CI_Migration
-{
+class Migration_Create_units_table extends CI_Migration {
+
   public function up()
   {
     $this->dbforge->add_field(array(
@@ -13,18 +13,14 @@ class Migration_Create_students_table extends CI_Migration
       ),
       'name' => array(
         'type' => 'VARCHAR',
-        'constraint' => 255
+        'constraint' => '100',
       ),
-      'birthdate' => array(
-        'type' => 'DATE'
-      )
     ));
-    $this->dbforge->add_key('id', true);
-    $this->dbforge->create_table('students', true);
+    $this->dbforge->add_key('id', TRUE);
+    $this->dbforge->create_table('units', true);
   }
 
-  public function down()
-  {
-    $this->dbforge->drop_table('students');
+  public function down() {
+    $this->dbforge->drop_table('units');
   }
 }
