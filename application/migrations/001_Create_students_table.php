@@ -4,12 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Migration_Create_students_table extends CI_Migration {
 
     public function up() {
-        // $this->db->query("
-        //     CREATE TABLE students (
-        //         id SERIAL PRIMARY KEY,
-        //         name VARCHAR(255)
-        //     )
-        // ");
       $fields = array(
         'id' => array(
             'type' => 'SERIAL',
@@ -19,6 +13,9 @@ class Migration_Create_students_table extends CI_Migration {
         'name' => array(
             'type' => 'VARCHAR',
             'constraint' => 255
+        ),
+        'birthdate' => array(
+          'type' => 'DATE'
         )
       );
   
@@ -29,6 +26,5 @@ class Migration_Create_students_table extends CI_Migration {
 
     public function down() {
       $this->dbforge->drop_table('students');
-      //  $this->db->query("DROP TABLE IF EXISTS students");
     }
 }

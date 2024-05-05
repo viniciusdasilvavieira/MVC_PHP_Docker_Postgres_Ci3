@@ -34,23 +34,24 @@ class StudentController extends CI_Controller {
     {
       if ($this->input->post()) {
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('name', 'Nome', 'required');
+        $this->form_validation->set_rules('name', 'nome', 'required');
+        $this->form_validation->set_rules('birthdate', 'data de nascimento', 'required|date');
         
         if ($this->form_validation->run()) {
-            $data = array(
-                'name' => $this->input->post('name')
-            );
-            $this->Student->insert_student($data);
-            $this->session->set_flashdata('success', 'Aluno adicionado!');
-            redirect('alunos');
+          $data = array(
+            'name' => $this->input->post('name'),
+            'birthdate' => $this->input->post('birthdate')
+          );
+          $this->Student->insert_student($data);
+          $this->session->set_flashdata('success', 'Aluno adicionado!');
         } else {
-            $this->session->set_flashdata('error', validation_errors());
-            redirect("aluno/adicionar");
+          $this->session->set_flashdata('error', validation_errors());
         }   
       } else {
-          $this->session->set_flashdata('error', 'método inválido');
-          redirect('alunos');
+        $this->session->set_flashdata('error', 'Método inválido');
       }
+
+      redirect('alunos');
     }
 
     //UPDATE
@@ -59,13 +60,15 @@ class StudentController extends CI_Controller {
       if ($this->input->post()) {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'Nome', 'required');
+        $this->form_validation->set_rules('birthdate', 'data de nascimento', 'required|date');
         
         if ($this->form_validation->run()) {
           $data = array(
-            'name' => $this->input->post('name')
+            'name' => $this->input->post('name'),
+            'birthdate' => $this->input->post('birthdate')
           );
           $this->Student->update_student($id, $data);
-          $this->session->set_flashdata('success', 'Dados atualizados');
+          $this->session->set_flashdata('success', 'Dados do aluno atualizados');
         }
         else {
           $this->session->set_flashdata('error', validation_errors());

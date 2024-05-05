@@ -2,12 +2,14 @@
 class Student extends CI_Model {
 
   //returns all students, always returns an array, empty if no students
-    public function get_students() {
+    public function get_students()
+    {
       return $this->db->get('students')->result();
     }
 
     //returns student with matching id, null if no student
-    public function get_student($id) {
+    public function get_student($id)
+    {
       $query = $this->db->get_where('students', array('id' => $id));
       if ($query->num_rows() > 0) {
           return $query->row();
@@ -17,7 +19,8 @@ class Student extends CI_Model {
     }
 
     //inserts new student into database, returns true if successful
-    public function insert_student($data) {
+    public function insert_student($data)
+    {
       $this->db->insert('students', $data);
       
       if ($this->db->affected_rows() > 0) {
@@ -28,10 +31,11 @@ class Student extends CI_Model {
     }
 
     //updates student with matching id, returns true if successful
-    public function update_student($id, $data) {
-      $name = $data['name'];
+    public function update_student($id, $data)
+    {
       $this->db->where('id', $id);
-      $this->db->update('students', array('name' => $name));
+      $this->db->update('students', $data);
+
       if ($this->db->affected_rows() > 0) {
         return true;
       } else {
@@ -39,7 +43,8 @@ class Student extends CI_Model {
       }
     }
 
-    public function delete_student($id) {
+    public function delete_student($id)
+    {
       $this->db->delete('students', array('id' => $id));
     }
 }
