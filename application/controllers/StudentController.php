@@ -9,6 +9,12 @@ class StudentController extends CI_Controller {
         $this->load->model('Student');
     }
 
+    public function index() {
+      $data['students'] = $this->Student->get_students();
+      $this->load->helper('url');
+      $this->load->view('students_list', $data);
+    }
+
     public function add() {
         //$name = $this->input->post('name');
         $name = 'John Doe';
@@ -24,8 +30,17 @@ class StudentController extends CI_Controller {
         }
     }
 
-    public function index() {
-      echo 'test wahasdad';exit;
+    public function edit($id)
+    {
+      $data['student'] = $this->Student->get_student($id);
+      $this->load->helper('url');
+      $this->load->view('edit_student', $data);
+    }
+
+    public function delete($id)
+    {
+      $this->Student->delete_student($id);
+      redirect('alunos');
     }
 }
 ?>
