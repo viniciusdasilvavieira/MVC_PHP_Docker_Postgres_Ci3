@@ -16,7 +16,7 @@ $route['enturmar']                = 'School/assignView';
 $route['enturmar/criar/enviar']   = 'School/assign';    //POST
 $route['enturmar/limpar/(:num)']  = 'School/clear/$1';
 
-$route['relatorio'] = 'School/report';
+$route['relatorio'] = 'School/reportView';
 
 
 //            STUDENT ROUTES

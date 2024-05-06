@@ -39,6 +39,58 @@ class Unit_model extends CI_Model {
     return $query->num_rows();
   }
 
+  //returns array of units with its students
+  public function get_all_units_with_students()
+  {
+    $this->db->select('units.*, students.name as student_name, students.birthdate');
+    $this->db->from('units');
+    $this->db->join('students', 'units.id = students.unit_id', 'left');
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      $result = array();
+      foreach ($query->result_array() as $row) {
+        // unit data
+        $unit_id = $row['id'];
+        if (!isset($result[$unit_id])) {
+          $result[$unit_id] = array(
+            'id' => $row['id'],
+            'name' => $row['name'],
+            'teacher' => $row['teacher'],
+            'students' => array()
+          );
+        }
+        // unit's students data
+        if ($row['student_name'] !== null) {
+          $result[$unit_id]['students'][] = array(
+            'name' => $row['student_name'],
+            'birthdate' => $row['birthdate']
+          );
+        }
+      }
+      return $result;
+    } else {
+      return false;
+    }
+  }
+
+  //returns units that have no students assigned
+  public function get_empty_units()
+  {
+    $this->db->select('units.*');
+    $this->db->from('units');
+    $this->db->join('students', 'units.id = students.unit_id', 'left');
+    $this->db->where('students.unit_id IS NULL');
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+      return $query->result_array();
+    } else {
+      return false;
+    }
+  }
+
+
   //checks if unit with matching id exists, returns true if exists
   public function unit_exists($unit_id)
   {

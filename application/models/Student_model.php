@@ -40,9 +40,9 @@ class Student_model extends CI_Model {
   public function student_exists($student_id){
     $query = $this->db->get_where('students', array('id' => $student_id));
     if ($query->num_rows() > 0) {
-        return true;
+      return true;
     } else {
-        return false;
+      return false;
     }
   }
 

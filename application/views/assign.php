@@ -1,4 +1,4 @@
-<?php $this->load->view('layouts/header', array('title' => 'Enturmar Alunos')); ?>
+<?php $this->load->view('layouts/header', array('title' => 'Enturmar alunos')); ?>
 
 <h3>Enturmar alunos</h3>
 
@@ -40,7 +40,9 @@
 <button id="clearUnitButton" type="submit" class="btn btn-danger mb-4"><i class="fas fa-minus"></i> Limpar turma</button>
 
 <div class="mb-4">
-  <a href="<?php echo site_url('/'); ?>" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</a>
+  <a href="<?php echo site_url('/'); ?>" class="btn btn-secondary">
+    <i class="fas fa-arrow-left"></i> Voltar
+  </a>
 </div>
 
 <script src="<?php echo base_url('assets/js/assign.js'); ?>"></script>

@@ -1,4 +1,4 @@
-<?php $this->load->view('layouts/header', array('title' => 'Turmas')); ?>
+<?php $this->load->view('layouts/header', array('title' => 'Menu')); ?>
 
 <div class="row mb-4">
   <div class="col-6">

@@ -53,6 +53,20 @@ class School extends CI_Controller
     $this->load->view('assign', $data);
   }
 
+  //REPORT VIEW
+  public function reportView()
+  {
+    $units = $this->Unit_model->get_all_units_with_students();
+    $unassigned_students = $this->Student_model->get_unassigned_students();
+    $empty_units = $this->Unit_model->get_empty_units();
+
+    $data['units'] = $units;
+    $data['unassigned_students'] = $unassigned_students;
+    $data['empty_units'] = $empty_units;
+
+    $this->load->view('report', $data);
+  }
+
   //ASSIGN STUDENTS TO A UNIT
   public function assign()
   {
@@ -108,11 +122,5 @@ class School extends CI_Controller
     $this->session->set_flashdata('success', 'Turma limpa com sucesso');
     redirect('turmas');
   }
-
-  //tbd
-  public function report(){
-    
-  }
-
 }
 ?>
