@@ -11,7 +11,7 @@ class Unit_model extends CI_Model {
   public function get_unit($id)
   {
     $query = $this->db->get_where('units', array('id' => $id));
-    return $query->num_rows();
+    return $query->row();
   }
 
    //returns units'name with matching id, null if not found

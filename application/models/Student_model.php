@@ -11,7 +11,7 @@ class Student_model extends CI_Model {
   public function get_student($id)
   {
     $query = $this->db->get_where('students', array('id' => $id));
-    return $query->num_rows();
+    return $query->row();
   }
 
   //returns students with unit assigned, always returns an array, empty if no students
