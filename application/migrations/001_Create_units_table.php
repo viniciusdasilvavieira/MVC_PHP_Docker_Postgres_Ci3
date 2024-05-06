@@ -15,6 +15,10 @@ class Migration_Create_units_table extends CI_Migration {
         'type' => 'VARCHAR',
         'constraint' => '100',
       ),
+      'teacher' => array(
+        'type' => 'VARCHAR',
+        'constraint' => '100',
+      )
     ));
     $this->dbforge->add_key('id', TRUE);
     $this->dbforge->create_table('units', true);

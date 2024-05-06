@@ -3,8 +3,8 @@
 <h2>Atualizar Turma</h2>
 
 <form action="<?php echo site_url('turma/atualizar/' . $unit->id); ?>" method="post">
-
   <div class="row mb-4">
+    
     <div class="col-6">
       <div class="form-group mb-0">
         <label for="name">Nome:</label>
@@ -13,7 +13,10 @@
     </div>
 
     <div class="col-4">
-      to be done
+      <div class="form-group mb-0">
+        <label for="name">Professor:</label>
+        <input type="text" class="form-control" id="teacher" name="teacher" value="<?php echo $unit->teacher; ?>">
+      </div>
     </div>
 
     <div class="col-2 align-self-end">

@@ -35,14 +35,16 @@ class Unit extends CI_Controller {
       if ($this->input->post()) {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'nome', 'required');
+        $this->form_validation->set_rules('teacher', 'professor', 'required');
         
         if ($this->form_validation->run())
         {
           $data = array(
-            'name' => $this->input->post('name')
+            'name' => $this->input->post('name'),
+            'teacher' => $this->input->post('teacher')
           );
           $this->Unit_model->insert_unit($data);
-          $this->session->set_flashdata('success', 'Turma adicionado!');
+          $this->session->set_flashdata('success', 'Turma adicionada!');
         }
         else
         {
@@ -64,11 +66,13 @@ class Unit extends CI_Controller {
       {
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'Nome', 'required');
+        $this->form_validation->set_rules('teacher', 'professor', 'required');
         
         if ($this->form_validation->run())
         {
           $data = array(
-            'name' => $this->input->post('name')
+            'name' => $this->input->post('name'),
+            'teacher' => $this->input->post('teacher')
           );
           $this->Unit_model->update_unit($id, $data);
           $this->session->set_flashdata('success', 'Dados da turma atualizados');

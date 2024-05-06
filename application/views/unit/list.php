@@ -13,7 +13,10 @@
     </div>
     
     <div class="col-4">
-      to be done
+      <div class="form-group mb-0">
+        <label for="name">Professor:</label>
+        <input type="text" class="form-control" id="teacher" name="teacher" value="">
+      </div>
     </div>
 
     <div class="col-2 align-self-end">
@@ -29,7 +32,7 @@
   <thead>
     <tr>
       <th>Turma</th>
-      <th>to be done</th>
+      <th>Professor</th>
       <th>Ações</th>
     </tr>
   </thead>
@@ -37,7 +40,7 @@
     <?php foreach ($units as $unit): ?>
       <tr>
         <td><?php echo $unit->name; ?></td>
-        <td>to be done</td>
+        <td><?php echo $unit->teacher; ?></td>
         <td>
           <a href="<?php echo site_url('turma/editar/' . $unit->id); ?>" class="btn btn-primary btn-sm mr-2"><i class="fas fa-edit"></i> Editar</a>
           <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $unit->id; ?>)"><i class="fas fa-trash-alt"></i> Excluir</button>

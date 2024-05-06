@@ -3,8 +3,8 @@
 <h2>Atualizar aluno</h2>
 
 <form action="<?php echo site_url('aluno/atualizar/' . $student->id); ?>" method="post">
-
   <div class="row mb-4">
+    
     <div class="col-6">
       <div class="form-group mb-0">
         <label for="name">Nome:</label>
