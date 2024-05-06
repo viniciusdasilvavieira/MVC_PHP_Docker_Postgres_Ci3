@@ -32,7 +32,7 @@
   <thead>
     <tr>
       <th>Turma</th>
-      <th>Alunos</th>
+      <th>Alunos (Qt.)</th>
       <th>Professor</th>
       <th>Ações</th>
     </tr>

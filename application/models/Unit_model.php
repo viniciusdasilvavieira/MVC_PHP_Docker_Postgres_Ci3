@@ -2,65 +2,65 @@
 class Unit_model extends CI_Model {
 
   //returns all units, always returns an array, empty if no units
-    public function get_units()
-    {
-      return $this->db->get('units')->result();
-    }
+  public function get_units()
+  {
+    return $this->db->get('units')->result();
+  }
 
-    //returns units with matching id, null if no unit
-    public function get_unit($id)
-    {
-      $query = $this->db->get_where('units', array('id' => $id));
-      if ($query->num_rows() > 0) {
-          return $query->row();
-      } else {
-          return null; 
-      }
-    }
+  //returns units with matching id, null if no unit
+  public function get_unit($id)
+  {
+    $query = $this->db->get_where('units', array('id' => $id));
+    return $query->num_rows();
+  }
 
-    //returns number of students with matching unit id
-    public function get_students_count($unit_id)
-    {
-      $this->db->where('unit_id', $unit_id);
-      $query = $this->db->get('students');
-      return $query->num_rows();
-    }
+  //returns number of students with matching unit id
+  public function get_students_count($unit_id)
+  {
+    $this->db->where('unit_id', $unit_id);
+    $query = $this->db->get('students');
 
-    //inserts new unit into the db, returns true if successful
-    public function insert_unit($data)
-    {
-      $this->db->insert('units', $data);
-      
-      if ($this->db->affected_rows() > 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+    return $query->num_rows();
+  }
 
-    //updates unit with matching id, returns true if successful
-    public function update_unit($id, $data)
-    {
-      $this->db->where('id', $id);
-      $this->db->update('units', $data);
+  //checks if unit with matching id exists, returns true if exists
+  public function unit_exists($unit_id)
+  {
+    $query = $this->db->get_where('units', array('id' => $unit_id));
+    return $query->num_rows() > 0;
+  }
 
-      if ($this->db->affected_rows() > 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+  //assigns student to unit, returns true if successful
+  public function assign_student_to_unit($unit_id, $student_id)
+  {
+    $data = array(
+      'unit_id' => $unit_id
+    );
+    $this->db->where('id', $student_id);
+    $this->db->update('students', $data);
+  }
 
-    //deletes unit with matching id, returns true if successful
-    public function delete_unit($id)
-    {
-      $this->db->delete('units', array('id' => $id));
+  //inserts new unit into the db, returns true if successful
+  public function insert_unit($data)
+  {
+    $this->db->insert('units', $data);
+    return $this->db->affected_rows() > 0;
+  }
 
-      if ($this->db->affected_rows() > 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+  //updates unit with matching id, returns true if successful
+  public function update_unit($id, $data)
+  {
+    $this->db->where('id', $id);
+    $this->db->update('units', $data);
+
+    return $this->db->affected_rows() > 0;
+  }
+
+  //deletes unit with matching id, returns true if successful
+  public function delete_unit($id)
+  {
+    $this->db->delete('units', array('id' => $id));
+    return $this->db->affected_rows() > 0;
+  }
 }
 ?>

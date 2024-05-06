@@ -26,9 +26,6 @@ class Migration_Create_students_table extends CI_Migration
     ));
     $this->dbforge->add_key('id', true);
     $this->dbforge->create_table('students', true);
-
-    $this->db->query('ALTER TABLE students ADD CONSTRAINT fk_unit_id FOREIGN KEY (unit_id) REFERENCES units(id) ON DELETE CASCADE');
-
   }
 
   public function down()

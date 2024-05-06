@@ -1,6 +1,6 @@
 <?php $this->load->view('layouts/header', array('title' => 'Enturmar Alunos')); ?>
 
-<h3>Enturmar alunos a turmas</h3>
+<h3>Enturmar alunos</h3>
 
 <form class="mb-2" action="<?php echo site_url('enturmar/enviar'); ?>" method="post">
 
@@ -20,7 +20,7 @@
 
     <div class="col-6">
       <div class="form-group">
-        <label>Alunos Disponíveis:</label>
+        <label>Alunos disponíveis:</label>
         <div class="checkbox-list">
           <?php foreach ($students as $student): ?>
             <div class="form-check">
@@ -34,7 +34,7 @@
 
   </div>
 
-  <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Enturmar Alunos</button>
+  <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Enturmar alunos</button>
 </form>
 
 <div class="mb-4">
