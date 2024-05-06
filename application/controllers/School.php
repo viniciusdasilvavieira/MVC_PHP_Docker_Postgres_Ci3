@@ -44,34 +44,19 @@ class School extends CI_Controller
     $this->load->view('unit/list', $data);
   }
 
-  //ASSIGNMENTS MENU VIEW
-  public function assignMenuView()
-  {
-    $this->load->view('assignment/menu');
-  }
-
-  //
-  public function assignCreateView()
+  //ASSIGNMENTS VIEW
+  public function assignView()
   {
     $data['units'] = $this->Unit_model->get_units();
     $data['students'] = $this->Student_model->get_unassigned_students();
-    $this->load->view('assignment/create', $data);
-  }
 
-  //
-  public function assignClearView()
-  {
-    $data['units'] = $this->Unit_model->get_units();
-    $data['students'] = $this->Student_model->get_assigned_students();
-    $this->load->view('assignment/clear', $data);
+    $this->load->view('assign', $data);
   }
-
 
   //ASSIGN STUDENTS TO A UNIT
   public function assign()
   {
     if ($this->input->post()) {
-      //form validation
       $this->load->library('form_validation');
       $this->form_validation->set_rules('unit', 'Turma', 'required|integer');
       $this->form_validation->set_rules('students[]', 'Alunos', 'required');
@@ -111,16 +96,18 @@ class School extends CI_Controller
     redirect('turmas');
   }
 
-  public function clear($id)
+  public function clear($unit_id)
   {
-    vardump($_POST);exit;
+    //checks if the unit exists in the db
+    if (!$this->Unit_model->unit_exists($unit_id)) {
+      $this->session->set_flashdata('error', 'Turma não encontrada');
+      redirect('enturmar');
+    }
 
     $this->Unit_model->clear_unit($unit_id);
     $this->session->set_flashdata('success', 'Turma limpa com sucesso');
     redirect('turmas');
   }
-
-
 
   //tbd
   public function report(){

@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="col-6">
+    <div class="col-6 border rounded py-3">
       <div class="form-group">
         <label>Alunos disponíveis:</label>
         <div class="checkbox-list">
@@ -30,15 +30,18 @@
           <?php endforeach; ?>
         </div>
       </div>
+
+       <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Enturmar</button>
     </div>
 
-  </div>
-
-  <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Enturmar</button>
+  </div>  
 </form>
+
+<button id="clearUnitButton" type="submit" class="btn btn-danger mb-4"><i class="fas fa-minus"></i> Liberar turma</button>
 
 <div class="mb-4">
   <a href="<?php echo site_url('/'); ?>" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</a>
 </div>
 
+<script src="<?php echo base_url('assets/js/assign.js'); ?>"></script>
 <?php $this->load->view('layouts/footer'); ?>

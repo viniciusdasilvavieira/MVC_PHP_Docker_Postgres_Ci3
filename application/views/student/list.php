@@ -29,9 +29,9 @@
 <h3>Listagem </h3>
 
 <table class="table">
-  <thead>
+  <thead class="bg-light shadow-sm">
     <tr> 
-      <th>Aluno</th>
+      <th>Aluno(a)</th>
       <th>Nascimento</th>
       <th>Turma</th>
       <th>Ações</th>

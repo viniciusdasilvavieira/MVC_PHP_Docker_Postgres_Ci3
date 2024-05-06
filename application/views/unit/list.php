@@ -29,11 +29,11 @@
 <h3>Listagem </h3>
 
 <table class="table">
-  <thead>
+  <thead class="bg-light shadow-sm">
     <tr>
       <th>Turma</th>
       <th>Alunos (Qt.)</th>
-      <th>Professor</th>
+      <th>Professor(a)</th>
       <th>Ações</th>
     </tr>
   </thead>

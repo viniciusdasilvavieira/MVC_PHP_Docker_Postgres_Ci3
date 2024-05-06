@@ -12,13 +12,9 @@ $route[''] = 'School/index';
 $route['alunos'] = 'School/studentsView';
 $route['turmas'] = 'School/unitsView';
 
-$route['enturmar'] = 'School/assignMenuView';
-
-$route['enturmar/criar'] = 'School/assignCreateView';
+$route['enturmar'] = 'School/assignView';
 $route['enturmar/criar/enviar'] = 'School/assign'; //POST
-
-$route['enturmar/limpar'] = 'School/assignClearView';
-$route['enturmar/limpar/enviar/(:num)'] = 'School/clear/$1'; //POST
+$route['enturmar/limpar/(:num)'] = 'School/clear/$1';
 
 $route['relatorio'] = 'School/report';
 
