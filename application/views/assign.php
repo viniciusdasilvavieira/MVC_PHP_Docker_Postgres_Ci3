@@ -37,7 +37,7 @@
   </div>  
 </form>
 
-<button id="clearUnitButton" type="submit" class="btn btn-danger mb-4"><i class="fas fa-minus"></i> Liberar turma</button>
+<button id="clearUnitButton" type="submit" class="btn btn-danger mb-4"><i class="fas fa-minus"></i> Limpar turma</button>
 
 <div class="mb-4">
   <a href="<?php echo site_url('/'); ?>" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</a>

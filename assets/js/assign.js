@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function()
   let unitSelect = document.getElementById('unit');
   let clearUnitButton = document.getElementById('clearUnitButton');
 
+  //sends id of selected unit to be emptied
   clearUnitButton.addEventListener('click', function(event) {
     event.preventDefault();
 
