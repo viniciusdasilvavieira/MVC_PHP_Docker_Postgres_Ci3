@@ -18,6 +18,16 @@ class Student_model extends CI_Model {
       }
     }
 
+    //returns students with no unit assigned, always returns an array, empty if no students
+    public function get_unassigned_students()
+    {
+      $this->db->select('*');
+      $this->db->from('students');
+      $this->db->where('unit_id', null);
+      $query = $this->db->get();
+      return $query->result();
+    }
+
     //inserts new student into the db, returns true if successful
     public function insert_student($data)
     {

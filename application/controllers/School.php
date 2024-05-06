@@ -13,8 +13,22 @@ class School extends CI_Controller {
     }
 
     //DASHBOARD VIEW
-    public function index() {
+    public function index()
+    {
       $this->load->view('dashboard');
     }
+
+    public function assignView()
+    {
+      $data['units'] = $this->Unit_model->get_units();
+      $data['students'] = $this->Student_model->get_unassigned_students();
+      $this->load->view('assign', $data);
+    }
+
+    public function assign()
+    {
+      
+    }
+
 }
 ?>

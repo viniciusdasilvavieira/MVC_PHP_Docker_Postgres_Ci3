@@ -32,6 +32,7 @@
   <thead>
     <tr>
       <th>Turma</th>
+      <th>Alunos</th>
       <th>Professor</th>
       <th>Ações</th>
     </tr>
@@ -40,6 +41,7 @@
     <?php foreach ($units as $unit): ?>
       <tr>
         <td><?php echo $unit->name; ?></td>
+        <td><?php echo $unit->students_count; ?></td>
         <td><?php echo $unit->teacher; ?></td>
         <td>
           <a href="<?php echo site_url('turma/editar/' . $unit->id); ?>" class="btn btn-primary btn-sm mr-2"><i class="fas fa-edit"></i> Editar</a>

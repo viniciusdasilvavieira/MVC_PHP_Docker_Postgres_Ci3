@@ -23,7 +23,7 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title"><i class="fas fa-link"></i> Enturmação</h5>
-        <a href="<?php echo site_url('assignments'); ?>" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Gerenciar</a>
+        <a href="<?php echo site_url('enturmar'); ?>" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Gerenciar</a>
       </div>
     </div>
   </div>

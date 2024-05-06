@@ -18,6 +18,14 @@ class Unit_model extends CI_Model {
       }
     }
 
+    //returns number of students with matching unit id
+    public function get_students_count($unit_id)
+    {
+      $this->db->where('unit_id', $unit_id);
+      $query = $this->db->get('students');
+      return $query->num_rows();
+    }
+
     //inserts new unit into the db, returns true if successful
     public function insert_unit($data)
     {

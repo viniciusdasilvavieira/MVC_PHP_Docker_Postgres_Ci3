@@ -5,8 +5,11 @@ $route['default_controller'] = 'School';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
 //            MAIN / SCHOOL ROUTES
 $route[''] = 'School/index';
+$route['enturmar'] = 'School/assignView';
+$route['enturmar/enviar'] = 'School/assign'; //POST
 
 
 //            STUDENT ROUTES

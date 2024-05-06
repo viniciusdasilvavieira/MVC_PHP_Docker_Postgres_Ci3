@@ -31,16 +31,28 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Nº</th>  
       <th>Aluno</th>
       <th>Nascimento</th>
+      <th>Turma</th>
       <th>Ações</th>
     </tr>
   </thead>
   <tbody>
     <?php foreach ($students as $student): ?>
       <tr>
+      <td><?php echo $student->id; ?></td>
         <td><?php echo $student->name; ?></td>
         <td><?php echo date('d/m/Y', strtotime($student->birthdate)); ?></td>
+        
+        <td>
+          <?php if ($student->unit_id): ?>
+          <?php echo $student->unit->name; ?>
+          <?php else: ?>
+            -
+          <?php endif; ?>    
+        </td>
+
         <td>
           <a href="<?php echo site_url('aluno/editar/' . $student->id); ?>" class="btn btn-primary btn-sm mr-2"><i class="fas fa-edit"></i> Editar</a>
           <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $student->id; ?>)"><i class="fas fa-trash-alt"></i> Excluir</button>
