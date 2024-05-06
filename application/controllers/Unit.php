@@ -12,16 +12,6 @@ class Unit extends CI_Controller
     $this->load->helper('url');
   }
 
-  //LIST (& INSERT) VIEW
-  public function index()
-  {
-    $data['units'] = $this->Unit_model->get_units();
-    foreach ($data['units'] as $unit) {
-      $unit->students_count = $this->Unit_model->get_students_count($unit->id);
-    }
-    $this->load->view('unit/list', $data);
-  }
-
   //EDIT VIEW
   public function editView($id)
   {

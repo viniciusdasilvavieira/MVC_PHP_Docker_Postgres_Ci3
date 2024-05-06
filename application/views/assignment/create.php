@@ -2,9 +2,9 @@
 
 <h3>Enturmar alunos</h3>
 
-<form class="mb-2" action="<?php echo site_url('enturmar/enviar'); ?>" method="post">
+<form class="mb-4" action="<?php echo site_url('enturmar/criar/enviar'); ?>" method="post">
 
-  <div class="row mb-4">
+   <div class="row mb-4">
 
     <div class="col-6">
       <div class="form-group">
@@ -34,7 +34,7 @@
 
   </div>
 
-  <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Enturmar alunos</button>
+  <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Enturmar</button>
 </form>
 
 <div class="mb-4">

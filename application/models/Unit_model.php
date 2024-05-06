@@ -14,6 +14,22 @@ class Unit_model extends CI_Model {
     return $query->num_rows();
   }
 
+   //returns units'name with matching id, null if not found
+  public function get_unit_name($id)
+  {
+    $query = $this->db->get_where('units', array('id' => $id));
+
+    if ($query) {
+      if ($query->num_rows() > 0) {
+        return $query->row()->name;
+      } else {
+        return NULL;
+      }
+    } else {
+      return NULL;
+    }
+  }
+
   //returns number of students with matching unit id
   public function get_students_count($unit_id)
   {
@@ -61,6 +77,12 @@ class Unit_model extends CI_Model {
   {
     $this->db->delete('units', array('id' => $id));
     return $this->db->affected_rows() > 0;
+  }
+
+  public function clear_unit($id)
+  {
+    $this->db->where('unit_id', $id);
+    $this->db->update('students', array('unit_id' => NULL));
   }
 }
 ?>

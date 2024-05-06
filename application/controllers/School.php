@@ -19,12 +19,53 @@ class School extends CI_Controller
     $this->load->view('dashboard');
   }
 
-  public function assignView()
+  //STUDENTS LIST (& INSERT) VIEW
+  public function studentsView()
+  {
+    $data['students'] = $this->Student_model->get_students();
+    $data['units'] = $this->Unit_model->get_units();
+
+    //loops through students adding unit's name to the ones that have the relationship
+    foreach ($data['students'] as $student) {
+      if ($student->unit_id) {
+        $student->unit_name = $this->Unit_model->get_unit_name($student->unit_id);
+      }
+    }
+    $this->load->view('student/list', $data);
+  }
+
+  //UNITS LIST (& INSERT) VIEW
+  public function unitsView()
+  {
+    $data['units'] = $this->Unit_model->get_units();
+    foreach ($data['units'] as $unit) {
+      $unit->students_count = $this->Unit_model->get_students_count($unit->id);
+    }
+    $this->load->view('unit/list', $data);
+  }
+
+  //ASSIGNMENTS MENU VIEW
+  public function assignMenuView()
+  {
+    $this->load->view('assignment/menu');
+  }
+
+  //
+  public function assignCreateView()
   {
     $data['units'] = $this->Unit_model->get_units();
     $data['students'] = $this->Student_model->get_unassigned_students();
-    $this->load->view('assign', $data);
+    $this->load->view('assignment/create', $data);
   }
+
+  //
+  public function assignClearView()
+  {
+    $data['units'] = $this->Unit_model->get_units();
+    $data['students'] = $this->Student_model->get_assigned_students();
+    $this->load->view('assignment/clear', $data);
+  }
+
 
   //ASSIGN STUDENTS TO A UNIT
   public function assign()
@@ -68,6 +109,22 @@ class School extends CI_Controller
       $this->session->set_flashdata('error', 'Método inválido');
     }
     redirect('turmas');
+  }
+
+  public function clear($id)
+  {
+    vardump($_POST);exit;
+
+    $this->Unit_model->clear_unit($unit_id);
+    $this->session->set_flashdata('success', 'Turma limpa com sucesso');
+    redirect('turmas');
+  }
+
+
+
+  //tbd
+  public function report(){
+    
   }
 
 }

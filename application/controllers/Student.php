@@ -12,13 +12,6 @@ class Student extends CI_Controller
     $this->load->helper('url');
   }
 
-  //LIST (& INSERT) VIEW
-  public function index()
-  {
-    $data['students'] = $this->Student_model->get_students();
-    $this->load->view('student/list', $data);
-  }
-
   //EDIT VIEW
   public function editView($id)
   {

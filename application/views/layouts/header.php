@@ -19,7 +19,7 @@
 <body>
   
 <div class="container mt-4">
-<div class="stripe mb-2"></div>
+<div class="stripe mb-4"></div>
   
 <?php $this->load->view('layouts/success_display'); ?>
 <?php $this->load->view('layouts/error_display'); ?>

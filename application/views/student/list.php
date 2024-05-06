@@ -30,8 +30,7 @@
 
 <table class="table">
   <thead>
-    <tr>
-      <th>Nº</th>  
+    <tr> 
       <th>Aluno</th>
       <th>Nascimento</th>
       <th>Turma</th>
@@ -41,13 +40,12 @@
   <tbody>
     <?php foreach ($students as $student): ?>
       <tr>
-      <td><?php echo $student->id; ?></td>
         <td><?php echo $student->name; ?></td>
         <td><?php echo date('d/m/Y', strtotime($student->birthdate)); ?></td>
         
         <td>
           <?php if ($student->unit_id): ?>
-          <?php echo $student->unit->name; ?>
+          <?php echo $student->unit_name; ?>
           <?php else: ?>
             -
           <?php endif; ?>    
