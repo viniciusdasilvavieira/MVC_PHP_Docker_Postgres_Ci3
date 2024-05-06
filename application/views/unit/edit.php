@@ -27,5 +27,8 @@
 
 </form>
 
+<div class="mb-4">
+  <a href="<?php echo site_url('turmas'); ?>" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Voltar</a>
+</div>
 
 <?php $this->load->view('layouts/footer'); ?>
