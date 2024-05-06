@@ -5,7 +5,6 @@ $route['default_controller'] = 'School';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-
 //            MAIN / SCHOOL ROUTES
 $route[''] = 'School/index';
 
@@ -17,6 +16,9 @@ $route['enturmar/criar/enviar']   = 'School/assign';    //POST
 $route['enturmar/limpar/(:num)']  = 'School/clear/$1';
 
 $route['relatorio'] = 'School/reportView';
+
+//            CREATE REPORT DPF
+$route['relatorio/pdf'] = 'Pdf/index';
 
 
 //            STUDENT ROUTES
