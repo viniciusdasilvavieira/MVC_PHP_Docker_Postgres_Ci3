@@ -1,8 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Migration_Create_students_table Class
+ *
+ * Creates the 'students' table in the database.
+ * Defines a foreign key constraint with the 'units' table.
+ * Inserts example data into the 'students' table.
+ */
 class Migration_Create_students_table extends CI_Migration
 {
+  /**
+   * Up Method
+   *
+   * Creates the 'students' table, defines a foreign key constraint,
+   * and inserts example data into the 'students' table.
+   */
   public function up()
   {
     $this->dbforge->add_field(array(
@@ -29,7 +42,7 @@ class Migration_Create_students_table extends CI_Migration
 
     $this->db->query('ALTER TABLE students ADD CONSTRAINT fk_unit_id FOREIGN KEY (unit_id) REFERENCES units(id) ON DELETE SET NULL');
   
-    //Insert example data into the db
+    // Inserting example data
     $students = array(
       [
         'name' => 'Joao Carlos',
@@ -66,6 +79,11 @@ class Migration_Create_students_table extends CI_Migration
     $this->db->insert_batch('students', $students);
   }
 
+  /**
+   * Down Method
+   *
+   * Drops the 'students' table and its foreign key constraint.
+   */
   public function down()
   {
     $this->db->query('ALTER TABLE students DROP CONSTRAINT fk_unit_id');

@@ -1,7 +1,7 @@
 <?php $this->load->view('layouts/header', array('title' => 'Relatório de turmas')); ?>
 
 <div class="mb-4">
-  <a href="<?php echo site_url('relatorio/pdf'); ?>" class="btn btn-warning">
+  <a href="<?php echo site_url('relatorio/pdf'); ?>" class="btn btn-warning" target="_blank">
     <i class="fas fa-file-pdf"></i> Gerar relatório em PDF
   </a>
 </div>

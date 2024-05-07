@@ -1,8 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Class Unit
+ * Controller for managing units.
+ */
 class Unit extends CI_Controller
 {
+  /**
+   * Constructor method.
+   * Loads necessary libraries and models.
+   */
   public function __construct()
   {
     parent::__construct();
@@ -12,7 +20,11 @@ class Unit extends CI_Controller
     $this->load->helper('url');
   }
 
-  //EDIT VIEW
+  /**
+   * Edit view method.
+   * Displays the edit view for a specific unit.
+   * @param int $id The ID of the unit to edit.
+   */
   public function editView($id)
   {
     $unit = $this->Unit_model->get_unit($id);
@@ -24,7 +36,10 @@ class Unit extends CI_Controller
     $this->load->view('unit/edit', $data);
   }
 
-  //SAVE
+  /**
+   * Save method.
+   * Saves a new unit. Expects a POST request.
+   */
   public function save()
   {
     if (!$this->input->post()) {
@@ -50,7 +65,11 @@ class Unit extends CI_Controller
     redirect('turmas');
   }
 
-  //UPDATE
+  /**
+   * Update method.
+   * Updates an existing unit. Expects a POST request.
+   * @param int $id The ID of the unit to update.
+   */
   public function update($id)
   {
     if (!$this->input->post()) {
@@ -76,7 +95,10 @@ class Unit extends CI_Controller
     redirect('turmas');
   }
 
-  //DELETE
+  /**
+   * Delete method. Deletes a unit.
+   * @param int $id The ID of the unit to delete.
+   */
   public function delete($id)
   {
     $unit = $this->Unit_model->get_unit($id);

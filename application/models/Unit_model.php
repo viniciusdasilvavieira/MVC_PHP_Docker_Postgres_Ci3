@@ -1,20 +1,41 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/**
+ * Class Unit_model
+ *
+ * This model handles operations related to units.
+ */
 class Unit_model extends CI_Model {
 
-  //returns all units, always returns an array, empty if no units
+  /**
+   * Get all units.
+   *
+   * @return array Returns an array containing all units. Returns an empty array if no units exist.
+   */
   public function get_units()
   {
     return $this->db->get('units')->result();
   }
 
-  //returns units with matching id, null if no unit
+  /**
+   * Get unit by ID.
+   *
+   * @param int $id The ID of the unit to retrieve.
+   * @return object|null Returns the unit object if found, otherwise returns null.
+   */
   public function get_unit($id)
   {
     $query = $this->db->get_where('units', array('id' => $id));
     return $query->row();
   }
 
-   //returns units'name with matching id, null if not found
+  /**
+   * Get unit name by ID.
+   *
+   * @param int $id The ID of the unit to retrieve the name for.
+   * @return string|null Returns the name of the unit if found, otherwise returns null.
+   */
   public function get_unit_name($id)
   {
     $query = $this->db->get_where('units', array('id' => $id));
@@ -30,7 +51,12 @@ class Unit_model extends CI_Model {
     }
   }
 
-  //returns number of students with matching unit id
+  /**
+   * Get the number of students assigned to a unit.
+   *
+   * @param int $unit_id The ID of the unit to count students for.
+   * @return int Returns the number of students assigned to the unit.
+   */
   public function get_students_count($unit_id)
   {
     $this->db->where('unit_id', $unit_id);
@@ -39,7 +65,11 @@ class Unit_model extends CI_Model {
     return $query->num_rows();
   }
 
-  //returns array of units with its students
+  /**
+   * Get all units with their students.
+   *
+   * @return array|bool Returns an array containing all units with their associated students. Returns false if no units exist.
+   */
   public function get_all_units_with_students()
   {
     $this->db->select('units.*, students.name as student_name, students.birthdate');
@@ -74,7 +104,11 @@ class Unit_model extends CI_Model {
     }
   }
 
-  //returns units that have no students assigned
+  /**
+   * Get empty units (units with no students assigned).
+   *
+   * @return array|bool Returns an array containing all empty units. Returns false if no empty units exist.
+   */
   public function get_empty_units()
   {
     $this->db->select('units.*');
@@ -90,15 +124,24 @@ class Unit_model extends CI_Model {
     }
   }
 
-
-  //checks if unit with matching id exists, returns true if exists
+  /**
+   * Check if unit exists.
+   *
+   * @param int $unit_id The ID of the unit to check.
+   * @return bool Returns true if the unit exists, otherwise returns false.
+   */
   public function unit_exists($unit_id)
   {
     $query = $this->db->get_where('units', array('id' => $unit_id));
     return $query->num_rows() > 0;
   }
 
-  //assigns student to unit, returns true if successful
+  /**
+   * Assign student to unit.
+   *
+   * @param int $unit_id The ID of the unit to assign the student to.
+   * @param int $student_id The ID of the student to assign to the unit.
+   */
   public function assign_student_to_unit($unit_id, $student_id)
   {
     $data = array(
@@ -108,14 +151,25 @@ class Unit_model extends CI_Model {
     $this->db->update('students', $data);
   }
 
-  //inserts new unit into the db, returns true if successful
+  /**
+   * Insert unit.
+   *
+   * @param array $data The data of the unit to insert.
+   * @return bool Returns true if the insertion is successful, otherwise returns false.
+   */
   public function insert_unit($data)
   {
     $this->db->insert('units', $data);
     return $this->db->affected_rows() > 0;
   }
 
-  //updates unit with matching id, returns true if successful
+  /**
+   * Update unit.
+   *
+   * @param int $id The ID of the unit to update.
+   * @param array $data The data to update the unit with.
+   * @return bool Returns true if the update is successful, otherwise returns false.
+   */
   public function update_unit($id, $data)
   {
     $this->db->where('id', $id);
@@ -124,13 +178,23 @@ class Unit_model extends CI_Model {
     return $this->db->affected_rows() > 0;
   }
 
-  //deletes unit with matching id, returns true if successful
+  /**
+   * Delete unit.
+   *
+   * @param int $id The ID of the unit to delete.
+   * @return bool Returns true if the deletion is successful, otherwise returns false.
+   */
   public function delete_unit($id)
   {
     $this->db->delete('units', array('id' => $id));
     return $this->db->affected_rows() > 0;
   }
 
+  /**
+   * Clear unit (remove all students from the unit).
+   *
+   * @param int $id The ID of the unit to clear.
+   */
   public function clear_unit($id)
   {
     $this->db->where('unit_id', $id);

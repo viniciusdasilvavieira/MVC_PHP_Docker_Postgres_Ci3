@@ -1,8 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Class Student
+ * Controller for managing students.
+ */
 class Student extends CI_Controller
 {
+  /**
+   * Constructor method.
+   * Loads necessary libraries and models.
+   */
   public function __construct()
   {
     parent::__construct();
@@ -12,7 +20,11 @@ class Student extends CI_Controller
     $this->load->helper('url');
   }
 
-  //EDIT VIEW
+  /**
+   * Edit view method.
+   * Displays the edit view for a specific student.
+   * @param int $id The ID of the student to edit.
+   */
   public function editView($id)
   {
     $student = $this->Student_model->get_student($id);
@@ -24,7 +36,10 @@ class Student extends CI_Controller
     $this->load->view('student/edit', $data);
   }
 
-  //SAVE
+  /**
+   * Save method.
+   * Saves a new student. Expects a POST request.
+   */
   public function save()
   {
     if (!$this->input->post()) {
@@ -50,7 +65,11 @@ class Student extends CI_Controller
     redirect('alunos');
   }
 
-  //UPDATE
+  /**
+   * Update method.
+   * Updates an existing student. Expects a POST request.
+   * @param int $id The ID of the student to update.
+   */
   public function update($id)
   {
     if (!$this->input->post()) {
@@ -76,7 +95,10 @@ class Student extends CI_Controller
     redirect('alunos');
   }
 
-  //DELETE
+  /**
+   * Delete method. Deletes a student.
+   * @param int $id The ID of the student to delete.
+   */
   public function delete($id)
   {
     $student = $this->Student_model->get_student($id);

@@ -1,8 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+/**
+ * Class School
+ * Controller for managing school-related operations.
+ */
 class School extends CI_Controller
 {
+  /**
+   * Constructor method.
+   * Loads necessary libraries and models.
+   */
   public function __construct()
   {
     parent::__construct();
@@ -13,7 +22,9 @@ class School extends CI_Controller
     $this->load->helper('url');
   }
 
-  //DASHBOARD VIEW
+  /**
+   * Dashboard view method. Displays the dashboard view.
+   */
   public function index()
   {
     //quick (bad) way to check if it's the first run of the app, runs migrations if it is
@@ -24,7 +35,10 @@ class School extends CI_Controller
     $this->load->view('dashboard');
   }
 
-  //first run of the app
+  /**
+   * First run method.
+   * Runs migrations for the first run of the app.
+   */
   private function firstRun()
   {
     $this->load->library('migration');
@@ -33,7 +47,10 @@ class School extends CI_Controller
     }
   }
 
-  //STUDENTS LIST (& INSERT) VIEW
+   /**
+   * Students view method.
+   * Displays the students list view and handles student insertion.
+   */
   public function studentsView()
   {
     $data['students'] = $this->Student_model->get_students();
@@ -48,7 +65,10 @@ class School extends CI_Controller
     $this->load->view('student/list', $data);
   }
 
-  //UNITS LIST (& INSERT) VIEW
+  /**
+   * Units view method.
+   * Displays the units list view and handles unit insertion.
+   */
   public function unitsView()
   {
     $data['units'] = $this->Unit_model->get_units();
@@ -58,7 +78,10 @@ class School extends CI_Controller
     $this->load->view('unit/list', $data);
   }
 
-  //ASSIGNMENTS VIEW
+  /**
+   * Assign view method.
+   * Displays the assign view for assigning students to units.
+   */
   public function assignView()
   {
     $data['units'] = $this->Unit_model->get_units();
@@ -67,7 +90,10 @@ class School extends CI_Controller
     $this->load->view('assign', $data);
   }
 
-  //REPORT VIEW
+  /**
+   * Report view method.
+   * Displays the report view for generating school reports.
+   */
   public function reportView()
   {
     $units = $this->Unit_model->get_all_units_with_students();
@@ -81,7 +107,10 @@ class School extends CI_Controller
     $this->load->view('report', $data);
   }
 
-  //ASSIGN STUDENTS TO A UNIT
+  /**
+   * Assign method.
+   * Assigns students to a unit. Expects a POST request.
+   */
   public function assign()
   {
     if (!$this->input->post()) {
@@ -122,9 +151,12 @@ class School extends CI_Controller
     redirect('enturmar');
   }
 
+  /**
+   * Clear method. Clears a unit.
+   * @param int $unit_id The ID of the unit to clear.
+   */
   public function clear($unit_id)
   {
-    //checks if the unit exists in the db
     if (!$this->Unit_model->unit_exists($unit_id)) {
       $this->session->set_flashdata('error', 'Turma não encontrada');
       redirect('enturmar');

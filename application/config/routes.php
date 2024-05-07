@@ -1,35 +1,47 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Routes Configuration
+ * Contains routing requests to controllers and methods.
+ */
+
 $route['default_controller'] = 'School';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-//            MAIN / SCHOOL ROUTES
+// Main / School Routes
+
+// Default route to the School controller's index method
 $route[''] = 'School/index';
 
-$route['alunos'] = 'School/studentsView';
-$route['turmas'] = 'School/unitsView';
+// School views and actions routes
+$route['alunos'] = 'School/studentsView';                   // View and insert students
+$route['turmas'] = 'School/unitsView';                      // View and insert units
 
-$route['enturmar']                = 'School/assignView';
-$route['enturmar/criar/enviar']   = 'School/assign';    //POST
-$route['enturmar/limpar/(:num)']  = 'School/clear/$1';
+// Assignment views and actions routes
+$route['enturmar']                = 'School/assignView';    // View for assigning students to units
+$route['enturmar/criar/enviar']   = 'School/assign';        // POST route for assigning students to units
+$route['enturmar/limpar/(:num)']  = 'School/clear/$1';      // Clear a unit
 
-$route['relatorio'] = 'School/reportView';
+$route['relatorio'] = 'School/reportView';                  // Report view
 
-//            CREATE REPORT DPF
+// Create report PDF route
 $route['relatorio/pdf'] = 'Pdf/index';
 
 
-//            STUDENT ROUTES
-$route['aluno/editar/(:num)']     = 'Student/editView/$1';
-$route['aluno/salvar']            = 'Student/save';       //POST
-$route['aluno/atualizar/(:num)']  = 'Student/update/$1';  //POST
-$route['aluno/excluir/(:num)']    = 'Student/delete/$1';
+// Student Routes
+$route['aluno/editar/(:num)']     = 'Student/editView/$1';  // Edit student view
+$route['aluno/salvar']            = 'Student/save';         // POST route for saving a student
+$route['aluno/atualizar/(:num)']  = 'Student/update/$1';    // POST route for updating a student
+$route['aluno/excluir/(:num)']    = 'Student/delete/$1';    // Delete a student
 
 
-//            UNIT ROUTES (Class / Turma) //calling it unit to avoid conflicts with 'Class'
-$route['turma/editar/(:num)']     = 'Unit/editView/$1';
-$route['turma/salvar']            = 'Unit/save';        //POST
-$route['turma/atualizar/(:num)']  = 'Unit/update/$1';   //POST
-$route['turma/excluir/(:num)']    = 'Unit/delete/$1';
+// Unit Routes
+$route['turma/editar/(:num)']     = 'Unit/editView/$1';     // Edit unit view
+$route['turma/salvar']            = 'Unit/save';            // POST route for saving a unit
+$route['turma/atualizar/(:num)']  = 'Unit/update/$1';       // POST route for updating a unit
+$route['turma/excluir/(:num)']    = 'Unit/delete/$1';       // Delete a unit
+
+
+//Obs: the name 'unit' was used to avoid conflicts with 'Class'

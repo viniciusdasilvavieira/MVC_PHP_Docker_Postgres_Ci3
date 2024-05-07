@@ -1,8 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Pdf Controller
+ *
+ * This controller generates a PDF report containing information about units and students.
+ * It utilizes the FPDF library for PDF generation.
+ */
 class Pdf extends CI_Controller
 {
+  /**
+   * Constructor
+   *
+   * Initializes required constants, loads models, and includes FPDF library.
+   */
   public function __construct()
   {
     define('FONT', 'Arial');
@@ -17,6 +28,11 @@ class Pdf extends CI_Controller
     require_once(APPPATH . 'libraries/fpdf.php');
   }
 
+  /**
+   * Index Method
+   *
+   * Generates the PDF report containing unit information, unassigned students, and empty units.
+   */
   public function index()
   {
     $pdf = new FPDF();
@@ -35,6 +51,11 @@ class Pdf extends CI_Controller
     $pdf->Output(); 
   }
 
+  /**
+   * Sets the header for the PDF report.
+   *
+   * @param object $pdf The FPDF object.
+   */
   private function setHeader(&$pdf)
   {
     $pdf->SetFont(FONT, 'B', FONT_G_SIZE);
@@ -48,6 +69,11 @@ class Pdf extends CI_Controller
     $pdf->Ln(7);
   }
 
+  /**
+   * Sets the unit information section of the PDF report.
+   *
+   * @param object $pdf The FPDF object.
+   */
   private function setUnitInformation(&$pdf)
   {
     $units = $this->Unit_model->get_all_units_with_students();
@@ -74,6 +100,11 @@ class Pdf extends CI_Controller
     }
   }
 
+  /**
+   * Sets the section for unassigned students in the PDF report.
+   *
+   * @param object $pdf The FPDF object.
+   */
   private function setUnassignedStudents(&$pdf)
   {
     $unassigned_students = $this->Student_model->get_unassigned_students();
@@ -95,6 +126,11 @@ class Pdf extends CI_Controller
     }
   }
 
+  /**
+   * Sets the section for empty units in the PDF report.
+   *
+   * @param object $pdf The FPDF object.
+   */
   private function setEmptyUnits(&$pdf)
   {
     $empty_units = $this->Unit_model->get_empty_units();
@@ -119,8 +155,13 @@ class Pdf extends CI_Controller
     }
   }
 
+  /**
+   * Sets the footer for the PDF report.
+   *
+   * @param object $pdf The FPDF object.
+   */
   private function setFooter(&$pdf){
-    $pdf->SetY(-15); //pos near the bottom
+    $pdf->SetY(-15); //position near the bottom
     $logo_path = FCPATH . 'assets/img/logo.png';
     list($width, $height) = getimagesize($logo_path);
 
