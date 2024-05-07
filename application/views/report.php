@@ -1,12 +1,13 @@
 <?php $this->load->view('layouts/header', array('title' => 'Relatório de turmas')); ?>
 
+<!-- Link to generate PDF report -->
 <div class="mb-4">
   <a href="<?php echo site_url('relatorio/pdf'); ?>" class="btn btn-warning" target="_blank">
     <i class="fas fa-file-pdf"></i> Gerar relatório em PDF
   </a>
 </div>
 
-<!-- UNITS WITH STUDENTS -->
+<!-- Loop through units with students -->
 <?php foreach ($units as $unit): ?>
   <?php if (!empty($unit['students'])): ?>
     <div class="mb-4">
@@ -31,7 +32,7 @@
   <?php endif; ?>
 <?php endforeach; ?>
 
-<!-- EMPTY UNITS -->
+<!-- Check for empty units -->
 <?php if (!empty($empty_units)): ?>
   <div class="mb-4">
     <h4>Turmas vazias</h4>
@@ -54,7 +55,7 @@
   </div>
 <?php endif; ?>
 
-<!-- UNASSIGNED STUDENTS -->
+<!-- Check for unassigned students -->
 <?php if (!empty($unassigned_students)): ?>
   <div class="mb-4">
     <h4>Alunos sem turma</h4>
@@ -77,7 +78,7 @@
   </div>
 <?php endif; ?>
 
-<!-- GO BACK BUTTON -->
+<!-- Back button -->
 <div class="mb-4">
   <a href="<?php echo site_url('/'); ?>" class="btn btn-secondary">
     <i class="fas fa-arrow-left"></i> Voltar

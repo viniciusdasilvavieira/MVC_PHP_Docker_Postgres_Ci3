@@ -1,6 +1,7 @@
 <?php $this->load->view('layouts/header', array('title' => 'Menu')); ?>
 
 <div class="row mb-4">
+  <!-- Column for "Alunos" menu option -->
   <div class="col-6">
     <div class="card bg-light shadow-sm">
       <div class="card-body">
@@ -10,6 +11,7 @@
     </div>
   </div>
 
+  <!-- Column for "Turmas" menu option -->
   <div class="col-6">
     <div class="card bg-light shadow-sm">
       <div class="card-body">
@@ -21,6 +23,7 @@
 </div>
 
 <div class="row">
+  <!-- Column for "Enturmação" menu option -->
   <div class="col-6">
     <div class="card bg-light shadow-sm">
       <div class="card-body">
@@ -30,6 +33,7 @@
     </div>
   </div>
 
+  <!-- Column for "Relatório" menu option -->
   <div class="col-6">
     <div class="card bg-light shadow-sm">
       <div class="card-body">

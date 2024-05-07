@@ -1,14 +1,13 @@
-
 # CRUD Escola e relatório em PDF
 
-- **Name:** Vinícius S. Vieira
+- **Nome:** Vinícius S. Vieira
 - **Email:** b249viniciusvieira@gmail.com
-- **GitHub:** [https://github.com/viniciusdasilvavieira/]
-- **LinkedIn:** [https://www.linkedin.com/in/vin%C3%ADcius-s-vieira-a152a612b/]
+- **GitHub:** https://github.com/viniciusdasilvavieira/
+- **LinkedIn:** https://www.linkedin.com/in/vin%C3%ADcius-s-vieira-a152a612b/
 
 ## CodeIgniter 3 App
 
-______________
+---
 
 INSTALAÇÃO
 
@@ -23,7 +22,7 @@ Em vez do típico .env.example, o .env está presente no repo para pular a confi
 $config['base_url'] = 'http://localhost:8080/';
 alterar se necessário; application>config>config.php linha 26
 
-______________
+---
 
 OBSERVAÇÔES
 
@@ -33,7 +32,7 @@ Responsividade: O uso de bootstrap tornou fácil realizar ajustes rápidos de re
 
 Insano a tamanho pequeno do projeto em MB comparado com uma aplicação Laravel kkkk;
 
-______________
+---
 
 Alguns dos ajustes que só ficaram no "para fazer":
 
