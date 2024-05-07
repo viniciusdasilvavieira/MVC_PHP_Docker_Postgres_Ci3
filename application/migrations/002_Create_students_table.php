@@ -28,11 +28,47 @@ class Migration_Create_students_table extends CI_Migration
     $this->dbforge->create_table('students', true);
 
     $this->db->query('ALTER TABLE students ADD CONSTRAINT fk_unit_id FOREIGN KEY (unit_id) REFERENCES units(id) ON DELETE SET NULL');
+  
+    //Insert example data into the db
+    $students = array(
+      [
+        'name' => 'Joao Carlos',
+        'birthdate' => '2013-05-15',
+        'unit_id' => 2,
+      ],
+      [
+        'name' => 'Juliana Alves',
+        'birthdate' => '2013-02-23',
+        'unit_id' => 3,
+      ],
+      [
+        'name' => 'Andressa Rios',
+        'birthdate' => '2012-07-11',
+        'unit_id' => 3,
+      ],
+      [
+        'name' => 'Marcos Paulo',
+        'birthdate' => '2014-02-13',
+        'unit_id' => NULL,
+      ],
+      [
+        'name' => 'Joaquim Silva',
+        'birthdate' => '2010-01-01',
+        'unit_id' => NULL,
+      ],
+      [
+        'name' => 'Marta Passos',
+        'birthdate' => '2013-09-09',
+        'unit_id' => NULL,
+      ]
+    );
+
+    $this->db->insert_batch('students', $students);
   }
 
   public function down()
   {
-    $this->db->query('ALTER TABLE students DROP FOREIGN KEY fk_unit_id');
+    $this->db->query('ALTER TABLE students DROP CONSTRAINT fk_unit_id');
     $this->dbforge->drop_table('students');
   }
 }

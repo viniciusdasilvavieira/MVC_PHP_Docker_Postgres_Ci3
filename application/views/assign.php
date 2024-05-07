@@ -10,7 +10,7 @@
       <div class="form-group">
         <label for="unit">Turma:</label>
         <select class="form-control" id="unit" name="unit">
-          <option value="">Selecione</option>
+          <option value="" disabled selected>Selecione</option>
           <?php foreach ($units as $unit): ?>
             <option value="<?php echo $unit->id; ?>"><?php echo $unit->name; ?></option>
           <?php endforeach; ?>

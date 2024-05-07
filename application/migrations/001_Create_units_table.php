@@ -22,6 +22,23 @@ class Migration_Create_units_table extends CI_Migration {
     ));
     $this->dbforge->add_key('id', TRUE);
     $this->dbforge->create_table('units', true);
+
+    //Insert example data into the db
+    $units = array(
+      [
+        'name' => 'MAT-02',
+        'teacher' => 'Julia'
+      ],
+      [
+        'name' => 'FIS-05',
+        'teacher' => 'Valeria',
+      ],
+      [
+        'name' => 'QUI-01',
+        'teacher' => 'Ricardo'
+      ]
+    );
+    $this->db->insert_batch('units', $units);
   }
 
   public function down() {

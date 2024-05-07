@@ -35,19 +35,17 @@ class Unit extends CI_Controller
     $this->form_validation->set_rules('name', 'nome', 'required');
     $this->form_validation->set_rules('teacher', 'professor', 'required');
     
-    if ($this->form_validation->run())
-    {
-      $data = array(
-        'name' => $this->input->post('name'),
-        'teacher' => $this->input->post('teacher')
-      );
-      $this->Unit_model->insert_unit($data);
-      $this->session->set_flashdata('success', 'Turma adicionada!');
-    }
-    else
-    {
+    if ($this->form_validation->run() === FALSE) {
       $this->session->set_flashdata('error', validation_errors());
-    } 
+      redirect('turmas');
+    }
+
+    $data = array(
+      'name' => $this->input->post('name'),
+      'teacher' => $this->input->post('teacher')
+    );
+    $this->Unit_model->insert_unit($data);
+    $this->session->set_flashdata('success', 'Turma adicionada!');
 
     redirect('turmas');
   }
@@ -63,20 +61,17 @@ class Unit extends CI_Controller
     $this->form_validation->set_rules('name', 'Nome', 'required');
     $this->form_validation->set_rules('teacher', 'professor', 'required');
     
-    if ($this->form_validation->run())
-    {
-      $data = array(
-        'name' => $this->input->post('name'),
-        'teacher' => $this->input->post('teacher')
-      );
-      $this->Unit_model->update_unit($id, $data);
-      $this->session->set_flashdata('success', 'Dados da turma atualizados');
-    }
-    else
-    {
+    if ($this->form_validation->run() === FALSE) {
       $this->session->set_flashdata('error', validation_errors());
       redirect("turma/editar/{$id}");
     }
+
+    $data = array(
+      'name' => $this->input->post('name'),
+      'teacher' => $this->input->post('teacher')
+    );
+    $this->Unit_model->update_unit($id, $data);
+    $this->session->set_flashdata('success', 'Dados da turma atualizados');
     
     redirect('turmas');
   }

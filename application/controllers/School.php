@@ -16,7 +16,21 @@ class School extends CI_Controller
   //DASHBOARD VIEW
   public function index()
   {
+    //quick (bad) way to check if it's the first run of the app, runs migrations if it is
+    if (!$this->db->table_exists('students')) {
+      $this->firstRun();
+    } 
+
     $this->load->view('dashboard');
+  }
+
+  //first run of the app
+  private function firstRun()
+  {
+    $this->load->library('migration');
+    if ($this->migration->latest() === FALSE) {
+      show_error($this->migration->error_string());
+    }
   }
 
   //STUDENTS LIST (& INSERT) VIEW
