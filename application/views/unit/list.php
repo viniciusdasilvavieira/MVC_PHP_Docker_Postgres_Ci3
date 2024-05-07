@@ -1,18 +1,18 @@
 <?php $this->load->view('layouts/header', array('title' => 'Turmas')); ?>
 
-<h3>Adicionar nova turma</h3>
+<h4>Adicionar nova turma</h4>
 
 <form action="<?php echo site_url('turma/salvar'); ?>" method="post">
   <div class="row mb-4">
 
-    <div class="col-6">
+    <div class="col-12 col-sm-6">
       <div class="form-group mb-0">
         <label for="name">Nome:</label>
         <input type="text" class="form-control" id="name" name="name" value="">
       </div>
     </div>
     
-    <div class="col-4">
+    <div class="col-10 col-sm-4">
       <div class="form-group mb-0">
         <label for="name">Professor:</label>
         <input type="text" class="form-control" id="teacher" name="teacher" value="">
@@ -20,13 +20,13 @@
     </div>
 
     <div class="col-2 align-self-end">
-      <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Salvar</button>
+      <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i></button>
     </div>
 
   </div>
 </form>
 
-<h3>Listagem </h3>
+<h4>Listagem </h4>
 
 <table class="table">
   <thead class="bg-light shadow-sm">
@@ -40,12 +40,12 @@
   <tbody>
     <?php foreach ($units as $unit): ?>
       <tr>
-        <td class="col-4"><?php echo $unit->name; ?></td>
-        <td class="col-2"><?php echo $unit->students_count; ?></td>
+        <td class="col-3 col-sm-4"><?php echo $unit->name; ?></td>
+        <td class="col-1 col-sm-2"><?php echo $unit->students_count; ?></td>
         <td class="col-3"><?php echo $unit->teacher; ?></td>
-        <td class="col-3">
-          <a href="<?php echo site_url('turma/editar/' . $unit->id); ?>" class="btn btn-primary btn-sm mr-2"><i class="fas fa-edit"></i> Editar</a>
-          <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $unit->id; ?>)"><i class="fas fa-trash-alt"></i> Excluir</button>
+        <td class="col-5 col-sm-3">
+          <a href="<?php echo site_url('turma/editar/' . $unit->id); ?>" class="btn btn-primary btn-sm mr-2"><i class="fas fa-edit"></i></a>
+          <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $unit->id; ?>)"><i class="fas fa-trash-alt"></i></button>
         </td>
       </tr>
     <?php endforeach; ?>

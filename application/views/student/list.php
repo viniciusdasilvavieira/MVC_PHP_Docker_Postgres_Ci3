@@ -1,18 +1,18 @@
 <?php $this->load->view('layouts/header', array('title' => 'Alunos')); ?>
 
-<h3>Adicionar novo aluno</h3>
+<h4>Adicionar novo aluno(a)</h4>
 
 <form action="<?php echo site_url('aluno/salvar'); ?>" method="post">
   <div class="row mb-4">
 
-    <div class="col-6">
+    <div class="col-12 col-sm-6">
       <div class="form-group mb-0">
         <label for="name">Nome:</label>
         <input type="text" class="form-control" id="name" name="name" value="">
       </div>
     </div>
     
-    <div class="col-4">
+    <div class="col-10 col-sm-4">
       <div class="form-group mb-0">
         <label for="birthdate">Nascimento:</label>
         <input type="date" class="form-control" id="birthdate" name="birthdate" value="">
@@ -20,13 +20,13 @@
     </div>
 
     <div class="col-2 align-self-end">
-      <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Salvar</button>
+      <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i></button>
     </div>
 
   </div>
 </form>
 
-<h3>Listagem </h3>
+<h4>Listagem </h4>
 
 <table class="table">
   <thead class="bg-light shadow-sm">
@@ -43,7 +43,7 @@
         <td class="col-4"><?php echo $student->name; ?></td>
         <td class="col-2"><?php echo date('d/m/Y', strtotime($student->birthdate)); ?></td>
         
-        <td class="col-3">
+        <td class="col-1 col-sm-3">
           <?php if ($student->unit_id): ?>
           <?php echo $student->unit_name; ?>
           <?php else: ?>
@@ -51,9 +51,9 @@
           <?php endif; ?>    
         </td>
 
-        <td class="col-3">
-          <a href="<?php echo site_url('aluno/editar/' . $student->id); ?>" class="btn btn-primary btn-sm mr-2"><i class="fas fa-edit"></i> Editar</a>
-          <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $student->id; ?>)"><i class="fas fa-trash-alt"></i> Excluir</button>
+        <td class="col-5 col-sm-3">
+          <a href="<?php echo site_url('aluno/editar/' . $student->id); ?>" class="btn btn-primary btn-sm mr-2"><i class="fas fa-edit"></i></a>
+          <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $student->id; ?>)"><i class="fas fa-trash-alt"></i></button>
         </td>
       </tr>
     <?php endforeach; ?>

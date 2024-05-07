@@ -19,11 +19,11 @@
 <div class="container mt-4">
   
   <!-- makeshift navbar lol -->
-  <div class="header-stripe mb-4">
+  <div class="navbar-stripe mb-4">
     <div class="row">
       <div class="col">
         <a href="<?php echo site_url(); ?>" class="btn btn-primary"><i class="fas fa-home"></i></a>
-        <span class="text-uppercase font-weight-bold px-2"><?php echo $title; ?></span>
+        <span class="navbar-title text-uppercase font-weight-bold px-2"><?php echo $title; ?></span>
       </div>
     </div>
   </div>

@@ -1,4 +1,9 @@
-.header-stripe {
-  background: linear-gradient(to left, #086cfc, transparent);
+.navbar-stripe {
+  background: linear-gradient(to left, #087cfc, transparent);
   height: 38px;
+}
+
+.navbar-title {
+  color: #087cfc;
+  text-shadow: 0 0 20px white;
 }

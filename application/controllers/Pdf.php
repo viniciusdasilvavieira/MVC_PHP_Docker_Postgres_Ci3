@@ -35,6 +35,13 @@ class Pdf extends CI_Controller
     $pdf->Output(); 
   }
 
+  //returns the passed name without accents and all uppercase
+  function cleanName($name) {
+    $name = iconv('UTF-8', 'ASCII//TRANSLIT', $name);
+    $name = strtoupper($name);
+    return $name;
+}
+
   private function setHeader(&$pdf)
   {
     $pdf->SetFont(FONT, 'B', FONT_G_SIZE);
@@ -44,7 +51,7 @@ class Pdf extends CI_Controller
     $pdf->Cell(0, 7, 'Telefone: (123) 456-7890 | Email: escola@primaria.com', 0, 1);
     $pdf->Ln(10);
     $pdf->SetFont(FONT, 'B', FONT_G_SIZE);
-    $pdf->Cell(0, 10, 'RELATóRIO', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'RELATORIO', 0, 1, 'C');
     $pdf->Ln(7);
   }
 
@@ -54,7 +61,7 @@ class Pdf extends CI_Controller
     foreach ($units as $unit) {
       if (!empty($unit['students'])) {
         $pdf->SetFont(FONT, 'B', FONT_G_SIZE);
-        $pdf->Cell(0, 10, 'Turma ' . $unit['name'], 0, 1);
+        $pdf->Cell(0, 10, 'Turma ' . $this->cleanName($unit['name']), 0, 1);
 
         //Table header
         $pdf->SetFont(FONT, '', FONT_S_SIZE);
@@ -64,7 +71,7 @@ class Pdf extends CI_Controller
 
         //Unit's students
         foreach ($unit['students'] as $student) {
-          $pdf->Cell(CELL_M_SIZE, 10, '  '. $student['name'], 1);
+          $pdf->Cell(CELL_M_SIZE, 10, '  '. $this->cleanName($student['name']), 1);
           $pdf->Cell(CELL_M_SIZE, 10, '  '. date('d/m/Y', strtotime($student['birthdate'])), 1);
           $pdf->Ln();
         }
@@ -88,7 +95,7 @@ class Pdf extends CI_Controller
       $pdf->Ln();
 
       foreach ($unassigned_students as $student) {
-        $pdf->Cell(CELL_M_SIZE, 10, '  '. $student->name, 1);
+        $pdf->Cell(CELL_M_SIZE, 10, '  '. $this->cleanName($student->name), 1);
         $pdf->Cell(CELL_M_SIZE, 10, '  '. date('d/m/Y', strtotime($student->birthdate)), 1);
         $pdf->Ln();
       }
@@ -110,8 +117,8 @@ class Pdf extends CI_Controller
 
       //Units
       foreach ($empty_units as $unit) {
-        $pdf->Cell(CELL_M_SIZE, 10, '  '. $unit['name'], 1);
-        $pdf->Cell(CELL_M_SIZE, 10, '  '. $unit['teacher'], 1);
+        $pdf->Cell(CELL_M_SIZE, 10, '  '. $this->cleanName($unit['name']), 1);
+        $pdf->Cell(CELL_M_SIZE, 10, '  '. $this->cleanName($unit['teacher']), 1);
         $pdf->Ln();
       }
 

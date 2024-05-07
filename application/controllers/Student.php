@@ -27,24 +27,24 @@ class Student extends CI_Controller
   //SAVE
   public function save()
   {
-    if ($this->input->post()) {
-      $this->load->library('form_validation');
-      $this->form_validation->set_rules('name', 'nome', 'required');
-      $this->form_validation->set_rules('birthdate', 'data de nascimento', 'required|date');
-      
-      if ($this->form_validation->run()) {
-        $data = array(
-          'name' => $this->input->post('name'),
-          'birthdate' => $this->input->post('birthdate')
-        );
-        $this->Student_model->insert_student($data);
-        $this->session->set_flashdata('success', 'Aluno adicionado!');
-      } else {
-        $this->session->set_flashdata('error', validation_errors());
-      }   
-    } else {
-      $this->session->set_flashdata('error', 'Método inválido');
+    if (!$this->input->post()) {
+      redirect('/');
     }
+
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('name', 'nome', 'required');
+    $this->form_validation->set_rules('birthdate', 'data de nascimento', 'required|date');
+    
+    if ($this->form_validation->run()) {
+      $data = array(
+        'name' => $this->input->post('name'),
+        'birthdate' => $this->input->post('birthdate')
+      );
+      $this->Student_model->insert_student($data);
+      $this->session->set_flashdata('success', 'Aluno adicionado!');
+    } else {
+      $this->session->set_flashdata('error', validation_errors());
+    }   
 
     redirect('alunos');
   }
@@ -52,27 +52,27 @@ class Student extends CI_Controller
   //UPDATE
   public function update($id)
   {
-    if ($this->input->post()) {
-      $this->load->library('form_validation');
-      $this->form_validation->set_rules('name', 'Nome', 'required');
-      $this->form_validation->set_rules('birthdate', 'data de nascimento', 'required|date');
-      
-      if ($this->form_validation->run()) {
-        $data = array(
-          'name' => $this->input->post('name'),
-          'birthdate' => $this->input->post('birthdate')
-        );
-        $this->Student_model->update_student($id, $data);
-        $this->session->set_flashdata('success', 'Dados do aluno atualizados');
-      }
-      else {
-        $this->session->set_flashdata('error', validation_errors());
-        redirect("aluno/editar/{$id}");
-      }   
+    if (!$this->input->post()) {
+      redirect('/');
+    }
+    
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('name', 'Nome', 'required');
+    $this->form_validation->set_rules('birthdate', 'data de nascimento', 'required|date');
+    
+    if ($this->form_validation->run()) {
+      $data = array(
+        'name' => $this->input->post('name'),
+        'birthdate' => $this->input->post('birthdate')
+      );
+      $this->Student_model->update_student($id, $data);
+      $this->session->set_flashdata('success', 'Dados do aluno atualizados');
     }
     else {
-      $this->session->set_flashdata('error', 'Método inválido');
-    }
+      $this->session->set_flashdata('error', validation_errors());
+      redirect("aluno/editar/{$id}");
+    }  
+
     redirect('alunos');
   }
 

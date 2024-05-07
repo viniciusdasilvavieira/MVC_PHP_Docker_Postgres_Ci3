@@ -10,7 +10,7 @@
 <?php foreach ($units as $unit): ?>
   <?php if (!empty($unit['students'])): ?>
     <div class="mb-4">
-      <h2>Turma <?php echo $unit['name']; ?></h2>
+      <h4>Turma <?php echo $unit['name']; ?></h4>
       <table class="table">
         <thead class="bg-light shadow-sm">
           <tr>
@@ -34,7 +34,7 @@
 <!-- EMPTY UNITS -->
 <?php if (!empty($empty_units)): ?>
   <div class="mb-4">
-    <h3>Turmas vazias</h3>
+    <h4>Turmas vazias</h4>
     <table class="table">
       <thead class="bg-light shadow-sm">
         <tr>
@@ -57,7 +57,7 @@
 <!-- UNASSIGNED STUDENTS -->
 <?php if (!empty($unassigned_students)): ?>
   <div class="mb-4">
-    <h3>Alunos sem turma</h3>
+    <h4>Alunos sem turma</h4>
     <table class="table">
       <thead class="bg-light shadow-sm">
         <tr>

@@ -1,6 +1,6 @@
-<?php $this->load->view('layouts/header', array('title' => 'Enturmar alunos')); ?>
+<?php $this->load->view('layouts/header', array('title' => 'Enturmação')); ?>
 
-<h3>Enturmar alunos</h3>
+<h4>Enturmar alunos</h4>
 
 <form class="mb-4" action="<?php echo site_url('enturmar/criar/enviar'); ?>" method="post">
 
