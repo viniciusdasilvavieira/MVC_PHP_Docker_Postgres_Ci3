@@ -84,7 +84,7 @@ class Pdf extends CI_Controller
 
         //Table header
         $pdf->SetFont(FONT, '', FONT_S_SIZE);
-        $pdf->Cell(CELL_M_SIZE, 10, '  Nome do Aluno', 1);
+        $pdf->Cell(CELL_M_SIZE, 10, '  Nome do Aluno(a)', 1);
         $pdf->Cell(CELL_M_SIZE, 10, '  Data de Nascimento', 1);
         $pdf->Ln();
 
@@ -114,7 +114,7 @@ class Pdf extends CI_Controller
 
       //Table header
       $pdf->SetFont(FONT, '', FONT_S_SIZE);
-      $pdf->Cell(CELL_M_SIZE, 10, '  Nome do Aluno', 1);
+      $pdf->Cell(CELL_M_SIZE, 10, '  Nome do Aluno(a)', 1);
       $pdf->Cell(CELL_M_SIZE, 10, '  Data de Nascimento', 1);
       $pdf->Ln();
 
