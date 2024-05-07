@@ -8,6 +8,7 @@ class Pdf extends CI_Controller
     define('FONT', 'Arial');
     define('FONT_G_SIZE', 14);
     define('FONT_S_SIZE', 12);
+    define('CELL_M_SIZE', 90);
   
     parent::__construct();
     $this->load->database();
@@ -43,7 +44,7 @@ class Pdf extends CI_Controller
     $pdf->Cell(0, 7, 'Telefone: (123) 456-7890 | Email: escola@primaria.com', 0, 1);
     $pdf->Ln(10);
     $pdf->SetFont(FONT, 'B', FONT_G_SIZE);
-    $pdf->Cell(0, 10, 'RELATORIO', 0, 1, 'C');
+    $pdf->Cell(0, 10, 'RELATóRIO', 0, 1, 'C');
     $pdf->Ln(7);
   }
 
@@ -57,14 +58,14 @@ class Pdf extends CI_Controller
 
         //Table header
         $pdf->SetFont(FONT, '', FONT_S_SIZE);
-        $pdf->Cell(70, 10, 'Nome do Aluno', 1);
-        $pdf->Cell(70, 10, 'Data de Nascimento', 1);
+        $pdf->Cell(CELL_M_SIZE, 10, '  Nome do Aluno', 1);
+        $pdf->Cell(CELL_M_SIZE, 10, '  Data de Nascimento', 1);
         $pdf->Ln();
 
         //Unit's students
         foreach ($unit['students'] as $student) {
-          $pdf->Cell(70, 10, $student['name'], 1);
-          $pdf->Cell(70, 10, $student['birthdate'], 1);
+          $pdf->Cell(CELL_M_SIZE, 10, '  '. $student['name'], 1);
+          $pdf->Cell(CELL_M_SIZE, 10, '  '. date('d/m/Y', strtotime($student['birthdate'])), 1);
           $pdf->Ln();
         }
 
@@ -82,13 +83,13 @@ class Pdf extends CI_Controller
 
       //Table header
       $pdf->SetFont(FONT, '', FONT_S_SIZE);
-      $pdf->Cell(70, 10, 'Nome do Aluno', 1);
-      $pdf->Cell(70, 10, 'Data de Nascimento', 1);
+      $pdf->Cell(CELL_M_SIZE, 10, '  Nome do Aluno', 1);
+      $pdf->Cell(CELL_M_SIZE, 10, '  Data de Nascimento', 1);
       $pdf->Ln();
 
       foreach ($unassigned_students as $student) {
-        $pdf->Cell(70, 10, $student->name, 1);
-        $pdf->Cell(70, 10, $student->birthdate, 1);
+        $pdf->Cell(CELL_M_SIZE, 10, '  '. $student->name, 1);
+        $pdf->Cell(CELL_M_SIZE, 10, '  '. date('d/m/Y', strtotime($student->birthdate)), 1);
         $pdf->Ln();
       }
     }
@@ -103,14 +104,14 @@ class Pdf extends CI_Controller
 
       //Table header
       $pdf->SetFont(FONT, '', FONT_S_SIZE);
-      $pdf->Cell(70, 10, 'Turma', 1);
-      $pdf->Cell(70, 10, 'Professor(a)', 1);
+      $pdf->Cell(CELL_M_SIZE, 10, '  Turma', 1);
+      $pdf->Cell(CELL_M_SIZE, 10, '  Professor(a)', 1);
       $pdf->Ln();
 
       //Units
       foreach ($empty_units as $unit) {
-        $pdf->Cell(70, 10, $unit['name'], 1);
-        $pdf->Cell(70, 10, $unit['teacher'], 1);
+        $pdf->Cell(CELL_M_SIZE, 10, '  '. $unit['name'], 1);
+        $pdf->Cell(CELL_M_SIZE, 10, '  '. $unit['teacher'], 1);
         $pdf->Ln();
       }
 

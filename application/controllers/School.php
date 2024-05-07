@@ -107,7 +107,7 @@ class School extends CI_Controller
     {
       $this->session->set_flashdata('error', 'Método inválido');
     }
-    redirect('turmas');
+    redirect('enturmar');
   }
 
   public function clear($unit_id)
@@ -120,7 +120,7 @@ class School extends CI_Controller
 
     $this->Unit_model->clear_unit($unit_id);
     $this->session->set_flashdata('success', 'Turma limpa com sucesso');
-    redirect('turmas');
+    redirect('enturmar');
   }
 }
 ?>

@@ -40,10 +40,10 @@
   <tbody>
     <?php foreach ($units as $unit): ?>
       <tr>
-        <td><?php echo $unit->name; ?></td>
-        <td><?php echo $unit->students_count; ?></td>
-        <td><?php echo $unit->teacher; ?></td>
-        <td>
+        <td class="col-4"><?php echo $unit->name; ?></td>
+        <td class="col-2"><?php echo $unit->students_count; ?></td>
+        <td class="col-3"><?php echo $unit->teacher; ?></td>
+        <td class="col-3">
           <a href="<?php echo site_url('turma/editar/' . $unit->id); ?>" class="btn btn-primary btn-sm mr-2"><i class="fas fa-edit"></i> Editar</a>
           <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?php echo $unit->id; ?>)"><i class="fas fa-trash-alt"></i> Excluir</button>
         </td>

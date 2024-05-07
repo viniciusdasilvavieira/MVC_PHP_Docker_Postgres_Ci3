@@ -1,8 +1,8 @@
 <?php $this->load->view('layouts/header', array('title' => 'Relatório de turmas')); ?>
 
 <div class="mb-4">
-  <a href="<?php echo site_url('relatorio/pdf'); ?>" class="btn btn-primary">
-    <i class="fas fa-file-pdf"></i> Gerar PDF
+  <a href="<?php echo site_url('relatorio/pdf'); ?>" class="btn btn-warning">
+    <i class="fas fa-file-pdf"></i> Gerar relatório em PDF
   </a>
 </div>
 
@@ -14,15 +14,15 @@
       <table class="table">
         <thead class="bg-light shadow-sm">
           <tr>
-            <th>Nome do Aluno</th>
-            <th>Data de Nascimento</th>
+            <th>Aluno(a)</th>
+            <th>Data de nascimento</th>
           </tr>
         </thead>
         <tbody>
           <?php foreach ($unit['students'] as $student): ?>
             <tr>
-              <td><?php echo $student['name']; ?></td>
-              <td><?php echo $student['birthdate']; ?></td>
+              <td class="col-6"><?php echo $student['name']; ?></td>
+              <td class="col-6"><?php echo date('d/m/Y', strtotime($student['birthdate'])); ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -45,8 +45,8 @@
       <tbody>
         <?php foreach ($empty_units as $unit): ?>
           <tr>
-            <td><?php echo $unit['name']; ?></td>
-            <td><?php echo $unit['teacher']; ?></td>
+            <td class="col-6"><?php echo $unit['name']; ?></td>
+            <td class="col-6"><?php echo $unit['teacher']; ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
@@ -57,19 +57,19 @@
 <!-- UNASSIGNED STUDENTS -->
 <?php if (!empty($unassigned_students)): ?>
   <div class="mb-4">
-    <h3>Alunos Sem Turma</h3>
+    <h3>Alunos sem turma</h3>
     <table class="table">
       <thead class="bg-light shadow-sm">
         <tr>
-          <th>Nome do Aluno</th>
-          <th>Data de Nascimento</th>
+          <th>Aluno(a)</th>
+          <th>Data de nascimento</th>
         </tr>
       </thead>
       <tbody>
         <?php foreach ($unassigned_students as $student): ?>
           <tr>
-            <td><?php echo $student->name; ?></td>
-            <td><?php echo $student->birthdate; ?></td>
+            <td class="col-6"><?php echo $student->name; ?></td>
+            <td class="col-6"><?php echo date('d/m/Y', strtotime($student->birthdate)); ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>

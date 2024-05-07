@@ -17,7 +17,16 @@
 <body>
   
 <div class="container mt-4">
-<div class="header-stripe mb-4"></div>
+  
+  <!-- makeshift navbar lol -->
+  <div class="header-stripe mb-4">
+    <div class="row">
+      <div class="col">
+        <a href="<?php echo site_url(); ?>" class="btn btn-primary"><i class="fas fa-home"></i></a>
+        <span class="text-uppercase font-weight-bold px-2"><?php echo $title; ?></span>
+      </div>
+    </div>
+  </div>
   
 <?php $this->load->view('layouts/success_display'); ?>
 <?php $this->load->view('layouts/error_display'); ?>
